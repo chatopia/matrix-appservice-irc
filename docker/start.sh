@@ -1,6 +1,7 @@
 #!/bin/sh
 
-PEM_FILENAME=config/passkey.pem
+CONFIG_DIR=config
+PEM_FILENAME=$CONFIG_DIR/passkey.pem
 
 if [ ! -f $PEM_FILENAME ]
 then

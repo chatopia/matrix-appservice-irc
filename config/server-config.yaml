@@ -58,7 +58,7 @@ ircService:
       # icon: https://example.com/images/hash.png
 
       # The port to connect to. Optional.
-      port: 2665
+      port: 6667
       # Whether to use SSL or not. Default: false.
       ssl: false
       # Whether or not IRC server is using a self-signed cert or not providing CA Chain
@@ -249,8 +249,8 @@ ircService:
         # 1:many mappings from IRC channels to room IDs on this IRC server.
         # The matrix room must already exist. Your matrix client should expose
         # the room ID in a "settings" page for the room.
-        "#spot": ["!bnZOLAENpzxeZyrTQG:irc.sneakyfrog.com"]
-        "#greenroom": ["!HPOAwwylTinNmGgHJi:irc.sneakyfrog.com"]
+        "#spot": ["!ZnhLipJrEAsELXXQWE:chat.sneakyfrog.com"]
+        #"#greenroom": ["!HPOAwwylTinNmGgHJi:irc"]
 
       # Configuration for virtual matrix users. The following variables are
       # exposed:
