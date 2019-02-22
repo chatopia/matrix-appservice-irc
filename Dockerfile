@@ -27,6 +27,7 @@ COPY --from=builder /freebindfree/libfreebindfree.so /app/libfreebindfree.so
 COPY app.js /app/
 COPY lib /app/lib
 COPY docker /app/docker
+COPY config /app/config
 
 ENV LD_PRELOAD /app/libfreebindfree.so
 

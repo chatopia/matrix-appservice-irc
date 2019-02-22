@@ -3,7 +3,7 @@
 homeserver:
   # The URL to the home server for client-server API calls, also used to form the
   # media URLs as displayed in bridged IRC channels:
-  url: "http://localhost:8008"
+  url: "http://synapse:8008"
   #
   # The URL of the homeserver hosting media files. This is only used to transform
   # mxc URIs to http URIs when bridging m.room.[file|image] events. Optional. By
@@ -25,7 +25,7 @@ homeserver:
 
   # The 'domain' part for user IDs on this home server. Usually (but not always)
   # is the "domain name" part of the HS URL.
-  domain: "localhost"
+  domain: "chat.sneakyfrog.com"
 
   # Should presence be enabled for matrix clients on this bridge. If disabled on the
   # homeserver then it should also be disabled here to avoid excess traffic.
@@ -36,15 +36,15 @@ homeserver:
 ircService:
   servers:
     # The address of the server to connect to.
-    irc.example.com:
+    irc:
       # A human-readable short name. This is used to label IRC status rooms
       # where matrix users control their connections.
       # E.g. 'ExampleNet IRC Bridge status'.
       # It is also used in the Third Party Lookup API as the instance `desc`
       # property, where each server is an instance.
-      name: "ExampleNet"
+      name: "irc-server"
 
-      additionalAddresses: [ "irc2.example.com" ]
+      #additionalAddresses: [ "irc2.example.com" ]
       #
       # [DEPRECATED] Use `name`, above, instead.
       # A human-readable description string
@@ -58,9 +58,9 @@ ircService:
       # icon: https://example.com/images/hash.png
 
       # The port to connect to. Optional.
-      port: 6697
+      port: 2665
       # Whether to use SSL or not. Default: false.
-      ssl: true
+      ssl: false
       # Whether or not IRC server is using a self-signed cert or not providing CA Chain
       sslselfsign: false
       # Should the connection attempt to identify via SASL (if a server or user password is given)
@@ -159,7 +159,7 @@ ircService:
         # Enable the ability for Matrix users to join *any* channel on this IRC
         # network.
         # Default: false.
-        enabled: true
+        enabled: false
         # Should the AS create a room alias for the new Matrix room? The form of
         # the alias can be modified via 'aliasTemplate'. Default: true.
         createAlias: true
@@ -181,7 +181,7 @@ ircService:
         # Should created Matrix rooms be federated? If false, only users on the
         # HS attached to this AS will be able to interact with this room.
         # Default: true.
-        federate: true
+        federate: false
         # The room alias template to apply when creating new aliases. This only
         # applies if createAlias is 'true'. The following variables are exposed:
         # $SERVER => The IRC server address (e.g. "irc.example.com")
@@ -206,7 +206,7 @@ ircService:
         # can have a significant effect on performance on startup as the lists are
         # synced. This must be enabled for anything else in this section to take
         # effect. Default: false.
-        enabled: false
+        enabled: true
 
         # Syncing membership lists at startup can result in hundreds of members to
         # process all at once. This timer drip feeds membership entries at the
@@ -217,19 +217,19 @@ ircService:
           ircToMatrix:
             # Get a snapshot of all real IRC users on a channel (via NAMES) and
             # join their virtual matrix clients to the room.
-            initial: false
+            initial: true
             # Make virtual matrix clients join and leave rooms as their real IRC
             # counterparts join/part channels. Default: false.
-            incremental: false
+            incremental: true
 
           matrixToIrc:
             # Get a snapshot of all real Matrix users in the room and join all of
             # them to the mapped IRC channel on startup. Default: false.
-            initial: false
+            initial: true
             # Make virtual IRC clients join and leave channels as their real Matrix
             # counterparts join/leave rooms. Make sure your 'maxClients' value is
             # high enough! Default: false.
-            incremental: false
+            incremental: true
 
         # Apply specific rules to Matrix rooms. Only matrix-to-IRC takes effect.
         rooms:
@@ -249,7 +249,8 @@ ircService:
         # 1:many mappings from IRC channels to room IDs on this IRC server.
         # The matrix room must already exist. Your matrix client should expose
         # the room ID in a "settings" page for the room.
-        "#thepub": ["!kieouiJuedJoxtVdaG:localhost"]
+        "#spot": ["!bnZOLAENpzxeZyrTQG:irc.sneakyfrog.com"]
+        "#greenroom": ["!HPOAwwylTinNmGgHJi:irc.sneakyfrog.com"]
 
       # Configuration for virtual matrix users. The following variables are
       # exposed:
@@ -265,7 +266,7 @@ ircService:
         # $NICK somewhere in it if it is specified. Can also use $SERVER to
         # insert the IRC domain.
         # Optional. Default: "$NICK (IRC)". Example: "Alice (IRC)"
-        displayName: "$NICK (IRC)"
+        displayName: "$NICK"
         # Number of tries a client can attempt to join a room before the request
         # is discarded. You can also use -1 to never retry or 0 to never give up.
         # Optional. Default: -1
@@ -281,7 +282,7 @@ ircService:
         # The template to apply to every IRC client nick. This MUST have either
         # $DISPLAY or $USERID or $LOCALPART somewhere in it.
         # Optional. Default: "M-$DISPLAY". Example: "M-Alice".
-        nickTemplate: "$DISPLAY[m]"
+        nickTemplate: "$DISPLAY"
         # True to allow virtual IRC clients to change their nick on this server
         # by issuing !nick <server> <nick> commands to the IRC AS bot.
         # This is completely freeform: it will NOT follow the nickTemplate.
@@ -434,7 +435,7 @@ ircService:
   # for storage in the database. Passwords are stored by using the admin room command
   # `!storepass server.name passw0rd. When a connection is made to IRC on behalf of
   # the Matrix user, this password will be sent as the server password (PASS command).
-  passwordEncryptionKeyPath: "passkey.pem"
+  passwordEncryptionKeyPath: "/app/config/passkey.pem"
 
   # Config for Matrix -> IRC bridging
   matrixHandler:
