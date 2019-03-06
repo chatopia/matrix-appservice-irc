@@ -159,7 +159,7 @@ ircService:
         # Enable the ability for Matrix users to join *any* channel on this IRC
         # network.
         # Default: false.
-        enabled: false
+        enabled: true
         # Should the AS create a room alias for the new Matrix room? The form of
         # the alias can be modified via 'aliasTemplate'. Default: true.
         createAlias: true
