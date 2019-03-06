@@ -270,7 +270,7 @@ ircService:
         # Number of tries a client can attempt to join a room before the request
         # is discarded. You can also use -1 to never retry or 0 to never give up.
         # Optional. Default: -1
-        joinAttempts: -1
+        joinAttempts: 2
 
       # Configuration for virtual IRC users. The following variables are exposed:
       # $LOCALPART => The user ID localpart ("alice" in @alice:localhost)
