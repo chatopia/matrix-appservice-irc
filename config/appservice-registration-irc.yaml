@@ -1,0 +1,16 @@
+id: 7d90c9bdba8f9d147a8671074783ce5727459b63ec08549ad4b27a63d99cc65f
+hs_token: bbfaa90ef5c7b0b7d9232db0909f03f7c5981716453ce9d61877e7504b02b664
+as_token: eae43d2826e9c1770fe8f2803c559692a31dc19267e4634323873cadaee87df0
+namespaces:
+  users:
+    - exclusive: true
+      regex: '@irc_.*:chat\.sneakyfrog\.com'
+  aliases:
+    - exclusive: true
+      regex: '#irc_.*:chat\.sneakyfrog\.com'
+  rooms: []
+url: 'http://bridge:9999'
+sender_localpart: irc-bridge
+rate_limited: false
+protocols:
+  - irc
