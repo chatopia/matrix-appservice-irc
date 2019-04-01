@@ -127,9 +127,9 @@ ircService:
         #      it can service bridge-specific queries from the IRC-side e.g. so
         #      real IRC clients have a way to change their Matrix display name.
         #      See https://github.com/matrix-org/matrix-appservice-irc/issues/55
-        enabled: true
+        enabled: false
         # The nickname to give the AS bot.
-        nick: "MatrixBot"
+        #nick: "MatrixBot"
         # The password to give to NickServ or IRC Server for this nick. Optional.
         # password: "helloworld"
         #
@@ -137,7 +137,7 @@ ircService:
         # the bridge. Set to false to prevent the bot from joining channels which have no
         # real matrix users in them, even if there is a mapping for the channel.
         # Default: true
-        joinChannelsIfNoUsers: true
+        #joinChannelsIfNoUsers: true
 
       # Configuration for PMs / private 1:1 communications between users.
       privateMessages:
