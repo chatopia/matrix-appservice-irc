@@ -13,4 +13,12 @@ then
   ip route add local $PREFIX dev lo
 fi
 
+if [ ! -z $CREATE_TESTING_ROOM ]
+then
+  if ! python3 /app/scripts/test-bootstrap.py
+  then
+    exit 1
+  fi
+fi
+
 exec node app.js $@

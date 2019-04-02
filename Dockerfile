@@ -16,8 +16,13 @@ FROM node:10-slim
 
 RUN apt-get update \
  && apt-get install -y sipcalc iproute2 openssl --no-install-recommends \
- && rm -rf /var/lib/apt/lists/* \
  && mkdir app
+
+# python is to run the test bootstrap script, maybe rewrite it in JS to avoid?
+RUN apt-get install -y python3 python3-requests
+
+# Clean up install stuff
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -28,6 +33,7 @@ COPY app.js /app/
 COPY lib /app/lib
 COPY docker /app/docker
 COPY config /app/config
+COPY scripts /app/scripts
 
 ENV LD_PRELOAD /app/libfreebindfree.so
 
