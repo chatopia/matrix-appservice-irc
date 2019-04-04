@@ -13,7 +13,7 @@ then
   ip route add local $PREFIX dev lo
 fi
 
-if [ ! -z $CREATE_TESTING_ROOM ]
+if [ ! -z $BOOTSTRAP_FOR_TESTING ]
 then
   if ! python3 /app/scripts/test-bootstrap.py
   then
